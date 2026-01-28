@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch
 from app import app
 
 
@@ -38,3 +39,27 @@ def test_index_has_button(client):
     """Test index page has button"""
     response = client.get("/")
     assert b"button" in response.data
+
+
+@patch("app.db")
+def test_add(mock_db, client):
+    mock_db.return_value.cursor.return_value = None
+    assert client.post("/add", json={"task": "test"}).status_code == 200
+
+
+@patch("app.db")
+def test_list(mock_db, client):
+    mock_db.return_value.cursor.return_value.fetchall.return_value = []
+    assert client.get("/list").status_code == 200
+
+
+@patch("app.db")
+def test_delete(mock_db, client):
+    mock_db.return_value.cursor.return_value = None
+    assert client.get("/delete/1").status_code == 200
+
+
+@patch("app.db")
+def test_add_from_browser(mock_db, client):
+    mock_db.return_value.cursor.return_value = None
+    assert client.post("/add_from_browser", data={"task": "test"}).status_code == 200
