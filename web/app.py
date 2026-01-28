@@ -10,9 +10,9 @@ if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
 logging.basicConfig(
-    filename=os.path.join(log_dir, 'app.log'),
+    filename=os.path.join(log_dir, "app.log"),
     level=logging.INFO,
-    format='%(asctime)s %(levelname)s: %(message)s'
+    format="%(asctime)s %(levelname)s: %(message)s",
 )
 
 app = Flask(__name__)
@@ -31,7 +31,7 @@ def db():
 @app.route("/")
 def index():
     logging.info("Index page accessed")
-    return '''
+    return """
         <h1>Todo API</h1>
         <form action="/add_from_browser" method="post">
             <input type="text" name="task" placeholder="Enter a task" required>
@@ -39,7 +39,7 @@ def index():
         </form>
         <br>
         <a href="/list"><button>View All Tasks</button></a>
-    '''
+    """
 
 
 # helper route to add elements form the browser
