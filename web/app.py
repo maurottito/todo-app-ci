@@ -25,7 +25,7 @@ app = Flask(__name__)
 def db():
     # environment variables for database connection
     return mysql.connector.connect(
-        host= os.environ["DB_HOST"],
+        host=os.environ["DB_HOST"],
         user=os.environ["DB_USER"],
         password=os.environ["DB_PASSWORD"],
         database=os.environ["DB_NAME"],
