@@ -3,7 +3,6 @@ import logging
 from flask import Flask, request
 import mysql.connector
 
-
 # logging
 log_dir = "/app/logs"
 if not os.path.exists(log_dir):
