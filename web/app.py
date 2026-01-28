@@ -5,8 +5,13 @@ import mysql.connector
 
 # logging
 log_dir = "/app/logs"
-if not os.path.exists(log_dir):
-    os.makedirs(log_dir)
+try:
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+except PermissionError:
+    log_dir = "/tmp/logs"
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
 
 logging.basicConfig(
     filename=os.path.join(log_dir, "app.log"),
