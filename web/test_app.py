@@ -16,6 +16,12 @@ def test_health(client):
     assert response.data == b"ok"
 
 
+def test_health_through_proxy(client):
+    """Test health check works through nginx proxy"""
+    response = client.get("/health")
+    assert response.status_code == 200
+
+
 def test_index(client):
     """Test index page"""
     response = client.get("/")
