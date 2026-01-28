@@ -48,6 +48,11 @@ jobs:
 
     # 4. Testing with coverage
     - name: Tests with pytest and coverage
+      env:
+        DB_HOST: localhost
+        DB_USER: test_user
+        DB_PASSWORD: test_password
+        DB_NAME: test_db
       run: |
         pytest web/ --cov=web/ --cov-report=html --cov-report=term --cov-report=xml
 
