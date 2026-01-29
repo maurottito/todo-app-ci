@@ -84,7 +84,18 @@ def list_all():
     cur.execute("SELECT * FROM todos")
     r = cur.fetchall()
     c.close()
-    return str(r)
+    html = """
+        <h1>Todo List</h1>
+        <table border="1" cellpadding="10">
+            <tr><th>ID</th><th>Task</th><th>Action</th></tr>
+    """
+    for task in r:
+        html += f"<tr><td>{task[0]}</td><td>{task[1]}</td><td><a href='/delete/{task[0]}'>Delete</a></td></tr>"
+    html += """
+        </table>
+        <br><a href="/"><button>Back</button></a>
+    """
+    return html
 
 
 # endpoint to delete
