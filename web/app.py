@@ -79,7 +79,7 @@ def add():
 # endpoint to view records
 @app.route("/list")
 def list_all():
-    c =  db()
+    c = db()
     cur = c.cursor()
     cur.execute("SELECT * FROM todos")
     r = cur.fetchall()

@@ -35,13 +35,15 @@ The app will be available at `http://localhost`
 
 ## CI/CD Pipelines
 
-**Python Application** (`python-app.yml`)
-- Black formatting check
-- flake8 linting
-- pytest >80% code coverage
-- Triggered on push/PR to main
+1. Python Test Job
+   - Black formatting check
+   - flake8 linting
+   - pytest with >80% code coverage
+   - Uploads coverage reports
+   - Triggered on push/PR to main
 
-**Docker Image** (`docker-image.yml`)
-- Dockerfile validation
-- Docker build and test
-- Triggered on push/PR to main (when Dockerfile changes)
+2. Docker Build Job
+   - Runs after Python tests pass
+   - Dockerfile syntax validation
+   - Docker image build and test
+   - Triggered on push/PR to main
